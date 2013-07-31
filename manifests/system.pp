@@ -13,9 +13,7 @@ class rvm::system($version=undef) {
                 rvm_bin_path=/usr/local/rvm/bin rvm_man_path=/usr/local/rvm/man /tmp/rvm-installer --version ${actual_version} && \
                 rm /tmp/rvm-installer'",
     creates => '/usr/local/rvm/bin/rvm',
-    require => [
-      Class['rvm::dependencies'],
-    ],
+    require => Class['rvm::depends']
   }
 
   # the fact won't work until rvm is installed before puppet starts
