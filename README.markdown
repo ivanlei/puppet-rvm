@@ -8,10 +8,8 @@ configuring passenger is also included.
 We are actively using this module.  It works well, but does have some issues you
 should be aware of.  Due to the way puppet works, certain resources
 (rvm\_sytem\_ruby, rvm\_gem and rvm\_gemset) may generate errors until RVM is
-installed.  The puppet-rvm module uses run stages to install RVM before the rest
-of your configuration runs.  However, if you run puppet using the `--noop`
-parameter, you may see _Could not find a default provider_ errors.  See the
-Troubleshooting section for more information.
+installed.  If you run puppet using the `--noop`parameter, you may see 
+_Could not find a default provider_ errors.  See the Troubleshooting section for more information.
 
 Please read the troubleshooting section below before opening an issue.
 
@@ -126,9 +124,8 @@ Install passenger with:
 
 This means that puppet cannot find the `/usr/local/rvm/bin/rvm` command
 (probably because RVM isn't installed yet).  Currently, Puppet does not support
-making a provider suitable using another resource (late-binding).  The
-puppet-rvm module uses run stages to install RVM before the rest of the
-configuration runs.  When running in _noop_ mode, RVM is not actually installed
+making a provider suitable using another resource (late-binding).  When running
+in _noop_ mode, RVM is not actually installed
 causing rvm\_system\_ruby, rvm\_gem and rvm\_gemset resources to generate this
 error.  You can avoid this error by surrounding your rvm configuration in an if
 block:
