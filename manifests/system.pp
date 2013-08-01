@@ -7,10 +7,10 @@ class rvm::system($version=undef) {
   }
 
   exec { 'system-rvm':
-    command => "curl -L https://get.rvm.io | bash -s -- rvm_bin_path=/usr/local/rvm/bin rvm_man_path=/usr/local/rvm/man --version ${actual_version}"
+    command => "curl -L https://get.rvm.io | bash -s -- rvm_bin_path=/usr/local/rvm/bin rvm_man_path=/usr/local/rvm/man --version ${actual_version}",
     creates => '/usr/local/rvm/bin/rvm',
     path    => ['/usr/bin', '/usr/sbin'],
-    require => Class['rvm::depends']
+    require => Class['rvm::depends'],
   }
 
   # the fact won't work until rvm is installed before puppet starts
